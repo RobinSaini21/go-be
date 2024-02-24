@@ -2,7 +2,6 @@ package contollers
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -38,13 +37,17 @@ func Register(c *gin.Context) {
 	collection := database.Collection("users")
 
 	var result User
-	filter := bson.D{{"username", userBody.Username}}
+	filter := bson.D{{"email", userBody.Email}}
 	err := collection.FindOne(context.Background(), filter).Decode(&result)
 
-	if err != nil {
-		fmt.Println("Failed to find document:", err)
+	if err == nil {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "Not Found",
+		})
 		return
 	}
+
+	_, err = collection.InsertOne(context.Background(), userBody)
 	token, err := jwt.GenerateToken(userBody)
 	if err != nil {
 		println("Not enough")
