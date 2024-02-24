@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"begain.com/db"
+	"begain.com/jwt"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -58,8 +59,13 @@ func GetMovies(c *gin.Context) {
 		fmt.Println("Failed to disconnect from MongoDB:", err)
 		return
 	}
+	token, err := jwt.GenerateToken()
+	if err != nil {
+		println("Not enough")
+	}
 	c.JSON(http.StatusOK, gin.H{
 		"message": "db ok",
 		"data":    results,
+		"token":   token,
 	})
 }

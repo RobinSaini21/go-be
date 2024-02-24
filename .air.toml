@@ -1,0 +1,6 @@
+# .air.toml
+
+# Auto reload main file
+[build]
+bin = "./main"
+cmd = "go build -o ./main"

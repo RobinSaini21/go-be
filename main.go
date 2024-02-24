@@ -4,11 +4,13 @@ import (
 	"net/http"
 
 	"begain.com/contollers"
+	"begain.com/middleware"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	r := gin.Default()
+	r.Use(middleware.LoggerMiddleware)
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"message": "pong",
