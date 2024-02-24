@@ -1,0 +1,32 @@
+# Compiled Object files, Static and Dynamic libraries (Shared Objects)
+*.o
+*.a
+*.so
+
+# Folders
+_obj
+_test
+
+# Compiled Go binary files
+*.exe
+*.test
+*.prof
+
+# Compiled Go packages
+*.test
+*.prof
+
+# End of generated files from go test
+
+# Compiled Go files
+*.test
+*.out
+
+# Binary directory
+/bin/
+
+# Package files
+/pkg/
+
+# Dependency directories
+/vendor/
