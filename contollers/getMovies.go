@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"begain.com/db"
-	"begain.com/jwt"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -26,7 +25,7 @@ const MONGODB_ATLAS_URL string = "mongodb+srv://robinsaini2126:MLcB98hSZmTIQTWS@
 
 func GetMovies(c *gin.Context) {
 
-	database := db.GetDataBase(c)
+	database := db.GetDataBase(c, "sample_mflix")
 	collection := database.Collection("comments")
 
 	queryOptions := options.Find()
@@ -59,13 +58,9 @@ func GetMovies(c *gin.Context) {
 		fmt.Println("Failed to disconnect from MongoDB:", err)
 		return
 	}
-	token, err := jwt.GenerateToken()
-	if err != nil {
-		println("Not enough")
-	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"message": "db ok",
 		"data":    results,
-		"token":   token,
 	})
 }

@@ -15,7 +15,7 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{
 			"message": "pong",
 		})
-	}).GET("/check-db", contollers.GetMovies)
+	}).GET("/check-db", contollers.GetMovies).POST("/register", contollers.Register)
 
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }

@@ -11,7 +11,7 @@ import (
 
 const MONGODB_ATLAS_URL string = "mongodb+srv://robinsaini2126:MLcB98hSZmTIQTWS@cluster0.x83bzir.mongodb.net/?retryWrites=true&w=majority"
 
-func GetDataBase(c *gin.Context) *mongo.Database {
+func GetDataBase(c *gin.Context, databaseName string) *mongo.Database {
 	clientOptions := options.Client().ApplyURI(MONGODB_ATLAS_URL)
 
 	client, err := mongo.Connect(context.Background(), clientOptions)
@@ -33,7 +33,7 @@ func GetDataBase(c *gin.Context) *mongo.Database {
 
 	fmt.Println("Disconnected from MongoDB!")
 
-	database := client.Database("sample_mflix")
+	database := client.Database(databaseName)
 
 	return database
 }
