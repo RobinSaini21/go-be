@@ -26,8 +26,11 @@ func main() {
 		// Render the HTML template with the provided data
 		c.HTML(http.StatusOK, "index.html", data)
 	}).GET("/api/data", func(c *gin.Context) {
-		// Return some data as JSON response
-		c.JSON(http.StatusOK, gin.H{"message": "Data loaded successfully"})
+		htmlContent := "<h1>Hello, World!</h1><p>This is HTML content sent in response.</p>"
+
+		// Send HTML content in response
+		c.Header("Content-Type", "text/html")
+		c.String(http.StatusOK, htmlContent)
 	})
 
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
