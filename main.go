@@ -11,11 +11,24 @@ import (
 func main() {
 	r := gin.Default()
 	r.Use(middleware.LoggerMiddleware)
+	r.Static("/static", "./static") // serve static files from the "static" directory
+
+	r.LoadHTMLGlob("views/*.html")
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"message": "pong",
 		})
-	}).GET("/check-db", contollers.GetMovies).POST("/register", contollers.Register)
+	}).GET("/check-db", contollers.GetMovies).POST("/register", contollers.Register).GET("/login-page", func(c *gin.Context) {
+		data := gin.H{
+			"Name": "Gin User",
+		}
+
+		// Render the HTML template with the provided data
+		c.HTML(http.StatusOK, "index.html", data)
+	}).GET("/api/data", func(c *gin.Context) {
+		// Return some data as JSON response
+		c.JSON(http.StatusOK, gin.H{"message": "Data loaded successfully"})
+	})
 
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
