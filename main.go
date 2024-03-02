@@ -31,6 +31,14 @@ func main() {
 		// Send HTML content in response
 		c.Header("Content-Type", "text/html")
 		c.String(http.StatusOK, htmlContent)
+	}).GET("/api/get-nav", func(c *gin.Context) {
+
+		// Send HTML content in response
+		c.Header("Content-Type", "text/html")
+		c.HTML(http.StatusOK, "navbar.html", "")
+	}).GET("/product-gallery", contollers.ProductGallery).GET("/home", func(c *gin.Context) {
+		c.Header("Content-Type", "text/html")
+		c.HTML(http.StatusOK, "html-skeleton.html", "")
 	})
 
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")

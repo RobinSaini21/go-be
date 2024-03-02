@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/htmx.org/dist/htmx.min.js"></script>
+</head>
+<body>
+ 
+    <div id="result">
+        <a href="/product-gallery" hx-get="/product-gallery" hx-trigger="click" hx-target="#result" id="product-button">Fetch Product</a>
+    </div>
+    <script>
+        document.getElementById("product-button").addEventListener("click", () =>{
+          
+            const url = window.location.host
+           // console.log(window.location.origin + "/product-gallery")
+            window.history.pushState({},"",window.location.origin + "/product-gallery")
+        })
+    </script>
+</body>
+</html>
