@@ -11,13 +11,6 @@
     <div id="result">
         <a href="/product-gallery" hx-get="/product-gallery" hx-trigger="click" hx-target="#result" id="product-button">Fetch Product</a>
     </div>
-    <script>
-        document.getElementById("product-button").addEventListener("click", () =>{
-          
-            const url = window.location.host
-           // console.log(window.location.origin + "/product-gallery")
-            window.history.pushState({},"",window.location.origin + "/product-gallery")
-        })
-    </script>
+    <script  src="../static/gobal-script.js"></script>
 </body>
 </html>

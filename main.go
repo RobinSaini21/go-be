@@ -39,7 +39,7 @@ func main() {
 	}).GET("/product-gallery", contollers.ProductGallery).GET("/home", func(c *gin.Context) {
 		c.Header("Content-Type", "text/html")
 		c.HTML(http.StatusOK, "html-skeleton.html", "")
-	})
+	}).GET("/product/:id", contollers.Product)
 
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
