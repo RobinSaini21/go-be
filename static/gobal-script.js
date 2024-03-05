@@ -11,13 +11,8 @@ window.addEventListener('popstate', function(event) {
           'X-Requested-With': 'XMLHttpRequest'
         },
         onLoad: function(responseText, xhr, request) {
-          console.log('HTMX request completed:', responseText);
-          // Append the received HTML to the target element
-         // document.getElementById('targetElement').innerHTML = responseText;
         },
         onError: function(xhr, request) {
-          console.error('HTMX request failed:', xhr.status);
-          // Handle errors here
         }
       });
 });
